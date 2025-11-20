@@ -1,4 +1,4 @@
-  pipeline {
+ pipeline {
     agent any
 
     stages {
@@ -11,17 +11,19 @@
         stage('Install Dependencies') {
             steps {
                 sh '''
-                python3 --version || true
-                pip3 --version || true
-
-                pip3 install -r requirements.txt
+                python3 -m venv venv
+                . venv/bin/activate
+                pip install -r requirements.txt
                 '''
             }
         }
 
         stage('Test App') {
             steps {
-                sh 'python3 -m py_compile app.py'
+                sh '''
+                . venv/bin/activate
+                python -m py_compile app.py
+                '''
             }
         }
 
