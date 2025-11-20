@@ -4,7 +4,7 @@
     stages {
         stage('Clone Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/<your-username>/<repo>.git'
+                git branch: 'main', url: 'https://github.com/Sakthiyuva/jenkins-cicd.git'
             }
         }
 
