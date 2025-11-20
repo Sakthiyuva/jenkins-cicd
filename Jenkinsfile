@@ -1,10 +1,5 @@
-   pipeline {
-    agent {
-        docker {
-            image 'python:3.9'
-            args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
+  pipeline {
+    agent any
 
     stages {
         stage('Clone Code') {
@@ -15,13 +10,18 @@
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh '''
+                python3 --version || true
+                pip3 --version || true
+
+                pip3 install -r requirements.txt
+                '''
             }
         }
 
         stage('Test App') {
             steps {
-                sh 'python -m py_compile app.py'
+                sh 'python3 -m py_compile app.py'
             }
         }
 
