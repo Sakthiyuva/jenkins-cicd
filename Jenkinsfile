@@ -1,13 +1,7 @@
- pipeline {
+pipeline {
     agent any
 
     stages {
-        stage('Clone Code') {
-            steps {
-                git branch: 'main', url: 'https://github.com/Sakthiyuva/jenkins-cicd.git'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh '''
@@ -41,3 +35,4 @@
         }
     }
 }
+
